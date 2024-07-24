@@ -12,19 +12,9 @@ dotenv.config({
 
 connectDB()
 
+            
 
 
-
-
-
-
-
-
-
-
-
-
-/*
 import express from "express"
 const app = express()
 
@@ -40,11 +30,9 @@ const app = express()
         console.log(`Example app listening on port ${process.env.PORT}`)
       })
 
-
     }catch(error){
 console.log("error :",error)
 throw err
     }
 })()
     
-*/
