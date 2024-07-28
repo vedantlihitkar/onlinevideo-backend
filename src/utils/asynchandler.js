@@ -18,7 +18,7 @@ const asynchandler = (requesthandler)=>{
     
     
     // wrapper function using try catch 
-    // const asynchandler = (func) =async (req , res , next)=>{
+    // const asynchandler = (func) => async (req , res , next)=>{
     //     try {
     //         await func(req , res , next)
     //     } catch (error) {
