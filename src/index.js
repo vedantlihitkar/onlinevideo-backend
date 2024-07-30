@@ -28,8 +28,6 @@ connectDB()
 
 
 
-
-
 /*    this part of code is first approach where we connect database in index.js file itself bur better approach is to make an seprate folder for database connectivity and export it in index.js
 
 
