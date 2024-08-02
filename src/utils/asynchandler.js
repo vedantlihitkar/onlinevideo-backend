@@ -1,6 +1,6 @@
 const asynchandler = (requesthandler)=>{
-    (req , res , next) =>{
-        Promise .resolve(requesthandler(req , res , next))
+    return (req , res , next) =>{
+        Promise.resolve(requesthandler(req , res , next))
         
         .reject((error)=>{
             next(error)
@@ -34,4 +34,4 @@ const asynchandler = (requesthandler)=>{
     
 
 
-    export { asynchandler}
+    export {asynchandler}

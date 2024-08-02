@@ -22,7 +22,7 @@ try {
     const uploadResult = await cloudinary.uploader.upload(localFilePath,{
         resource_type : "auto"
     });
-    console.log("file upload succesfully",uploadResult.url);
+    console.log("file upload succesfully on cloudinary",uploadResult.url);
 
     return uploadResult ;
     
@@ -34,3 +34,5 @@ try {
 }
 
 }
+
+export {uploadCloudinary}
