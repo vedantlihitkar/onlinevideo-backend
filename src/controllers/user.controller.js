@@ -10,14 +10,22 @@ const registerUser = asynchandler (async (req , res )=>{
     // res.status(200).json
     //     message :"ok hello"
     // })
-
-     const {fullName, email ,username,password} = req.body
-     console.log("email: ", email);
-
+//data points extract karage req.body me se
+  const {fullName, email ,username,password} = req.body
+  
+  
+  
+  
+     //  console.log("username: ", username);
+    //  console.log("fullname: ", fullName);
+    //  console.log("email: ", email);
+     
     // if(fullName===""){
     //     throw new apierror(
     //         400,"fullname is required")
     // }
+
+//CHECK KARGE KE VO DATA POINTS EMPTY HAI KE NHI
 
     if (
         [fullName ,email,username,password].some((field)=>field?.trim()==="")
@@ -26,8 +34,8 @@ const registerUser = asynchandler (async (req , res )=>{
         400,"all fields are required")
     }
 
-
-   const existedUser = User.findOne({
+//CHECK IF USER EXIST OR NOT
+   const existedUser =await User.findOne({
         $or :[{username} , {email} ]
     })
 
@@ -38,17 +46,21 @@ if (existedUser) {
 
 
 // multer provide acces to files
-const avatarLocalPAth =req.files?.avatar[0]?.path;
 
-const coverimageLocalPAth =req.files?.coverimage[0]?.path
+//console.log(req.files);
 
-if (!avatarLocalPAth) {
+// AVATAR KA LOCAL PATH NKLALA TAKI PHIR CLOUDINARY PE UPLOAD KAR SAKE 
+const avatarLocalPath = req.files?.avatar?.[0]?.path;
+const coverimageLocalPath = req.files?.coverimage?.[0]?.path;
+
+
+if (!avatarLocalPath) {
  throw new apierror(400 , "avatar files required")   
 }
 
-
-const avatar =await uploadCloudinary(avatarLocalPAth)
-const coverImage =await uploadCloudinary(coverimageLocalPAth)
+// CLOUDINARY PE UPLOAD KAREGE 
+const avatar =await uploadCloudinary(avatarLocalPath)
+const coverImage =await uploadCloudinary(coverimageLocalPath)
 
 if (!avatar) {
     throw new apierror(400 , "avatar files required")  

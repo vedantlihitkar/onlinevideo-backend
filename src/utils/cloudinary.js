@@ -14,7 +14,7 @@ api_secret: process.env.CLOUDINARY_API_SECRET
 });
     
 
-const uploadCloudinary = async function() {
+const uploadCloudinary = async function(localFilePath) {
 // Upload an image
 
 try {
@@ -22,7 +22,9 @@ try {
     const uploadResult = await cloudinary.uploader.upload(localFilePath,{
         resource_type : "auto"
     });
-    console.log("file upload succesfully on cloudinary",uploadResult.url);
+   // console.log("file upload succesfully on cloudinary",uploadResult.url);
+   fs.unlinkSync(localFilePath)
+   
 
     return uploadResult ;
     

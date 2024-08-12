@@ -12,7 +12,7 @@ const userSchema = new Schema({
         trim :true,
         index : true
     },
-    emial :{
+    email :{
         type : String,
         required : true,
         unique : true,
@@ -20,7 +20,7 @@ const userSchema = new Schema({
         trim :true
         
     },
-    fullname :{
+    fullName :{
         type : String,
         required : true,
         trim :true,
@@ -46,7 +46,7 @@ const userSchema = new Schema({
         required :[true ,"password is required"]
     },
     refreshToken :{
-        type : string 
+        type : String 
 
     }
 },{timestamps : true})
