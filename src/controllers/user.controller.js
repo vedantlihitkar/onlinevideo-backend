@@ -247,5 +247,146 @@ try {
 })
 
 
+const changeCurrentPassword =asynchandler(async(req ,res)=>{
+    const{oldPassword ,newPassword} = req.body
+    const user =await User.findById(req.user?._id)
+    const isPasswordCorrect =await user.isPasswordCorrect(oldPassword)
 
-export {registerUser,loginUser,LogoutUser,refreshAccessToken}
+    if (!isPasswordCorrect) {
+        throw new apierror(400,"invalid old password")
+    }
+
+    user.password =newPassword
+   await user.save({ValidateBeforeSave :false})
+
+return res 
+.status(200)
+.json(new ApiResponse(200,{},"password changed successfully"))
+
+
+})
+
+
+
+const getcurrentUser =asynchandler(async(req , res)=>{
+
+    return res
+    .status(200)
+    .json(200 ,req.user ,"current user fetched successfully")
+
+})
+
+
+const updateAccountDetail = asynchandler(async(req , res )=>{
+
+    const {fullName ,email}=req.body
+
+    if(!(fullName || email)){
+        throw new apierror(401 , "All field are required")
+    }
+
+
+const user = await User.findByIdAndUpdate(
+    req.user?._id,
+    {
+        $set :{
+            fullName :fullName ,
+            email :email
+        }
+    },
+    {new :true}
+).select("-password")
+
+return res 
+.status(200)
+.json(
+    new ApiResponse(200 ,user,"account details updated successfully"))
+
+
+
+})
+
+
+const updateUserAvatar = asynchandler(async(req , res)=>{
+   const avatarLocalPath = req.file?.path
+if (!avatarLocalPath) {
+    throw new apierror(400 ,"avatar file is missing")
+
+}
+const avatar = await uploadCloudinary(avatarLocalPath)
+
+if (!avatar.url) {
+    throw new apierror(400 ,"error while uploading  avatar ")
+}
+
+const user =await User.findByIdAndUpdate(
+    req.user?._id,
+    {
+        $set :{
+           avatar :avatar.url
+        }
+    },
+    {new :true}
+).select("-password")
+
+return res
+.status(200)
+.json(
+    new ApiResponse(200 , user , "avatar update successfully")
+ )
+
+})
+
+
+const updateUserCoverImage = asynchandler(async(req , res)=>{
+   const coverimageLocalPath = req.file?.path
+if (!coverimageLocalPath) {
+    throw new apierror(400 ,"cover image file is missing")
+
+}
+const coverImage = await uploadCloudinary(coverimageLocalPath)
+
+if (!coverImage.url) {
+    throw new apierror(400 ,"error while uploading cover image ")
+}
+
+const user =await User.findByIdAndUpdate(
+    req.user?._id,
+    {
+        $set :{
+           coverImage :coverImage.url
+        }
+    },
+    {new :true}
+).select("-password")
+
+return res
+.status(200)
+.json(
+    new ApiResponse(200 , user , "cover image update successfully")
+ )
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+export {registerUser,
+  loginUser,
+    LogoutUser,
+    refreshAccessToken,
+    changeCurrentPassword,
+    getcurrentUser,
+    updateAccountDetail,
+    updateUserAvatar,
+    updateUserCoverImage
+
+}
