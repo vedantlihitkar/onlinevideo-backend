@@ -185,8 +185,8 @@ const LogoutUser =asynchandler(async(req , res)=>{
 await User.findByIdAndUpdate(
     req.user._id ,{
        // $set is an mongodb operator
-        $set :{
-            refreshToken :undefined
+        $unset :{
+            refreshToken :1
         }
     },
     {
@@ -510,6 +510,15 @@ const getWatchHistory =asynchandler(async(req , res)=>{
 })
 
 
+
+
+const addComment = asynchandler(async(req ,res)=>{
+    const user =req.user._id
+    const {content} =req.body
+
+   
+
+})
 
 
 export {registerUser,
