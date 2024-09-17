@@ -512,13 +512,8 @@ const getWatchHistory =asynchandler(async(req , res)=>{
 
 
 
-const addComment = asynchandler(async(req ,res)=>{
-    const user =req.user._id
-    const {content} =req.body
 
-   
 
-})
 
 
 export {registerUser,

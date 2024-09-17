@@ -1,6 +1,6 @@
-import mongoose , {Schema}from "mongoose";
+import mongoose ,{Schema} from "mongoose";
 
-const playlistSchema = mongoose.Schema({
+const playlistSchema =new  mongoose.Schema({
     name :{
     type :String,
     required :true
@@ -21,6 +21,6 @@ const playlistSchema = mongoose.Schema({
         ref :"User"
     }
 }
-,{Timestamps:true})
+,{Timestamp:true})
 
-export const playlist =mongoose.modell("playlist",playlistSchema)
+export const Playlist =mongoose.model("Playlist",playlistSchema)

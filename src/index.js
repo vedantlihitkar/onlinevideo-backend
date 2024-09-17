@@ -9,7 +9,10 @@ import { app } from "./app.js";
 
 dotenv.config({
     path: './.env'
-})
+    })
+    
+ /*    this part of code is first approach where we connect database in index.js file itself bur better approach is to make an seprate folder for database connectivity and export it in index.js*/
+
 
 connectDB()
 .then(()=>{
@@ -28,31 +31,30 @@ connectDB()
 
 
 
-/*    this part of code is first approach where we connect database in index.js file itself bur better approach is to make an seprate folder for database connectivity and export it in index.js
 
 
-import mongoose from "mongoose"
-// import {DB_NAME} from "./constants";
+// import mongoose from "mongoose"
+// // import {DB_NAME} from "./constants";
 
-import express from "express"
-const app = express()
+// import express from "express"
+// const app = express()
 
-(async ()=>{
-    try{
-    await mongoose.connect(`${process.env.MONGO_DB}/${DB_NAME}`)
-    app.on("error",(error)=>{
-        console.log("error",error);
-        throw error
-    })
+// (async ()=>{
+//     try{
+//     await mongoose.connect(`${process.env.MONGO_DB}/${DB_NAME}`)
+//     app.on("error",(error)=>{
+//         console.log("error",error);
+//         throw error
+//     })
 
-    app.listen(process.env.PORT, () => {
-        console.log(`Example app listening on port ${process.env.PORT}`)
-      })
+//     app.listen(process.env.PORT, () => {
+//         console.log(`Example app listening on port ${process.env.PORT}`)
+//       })
 
-    }catch(error){
-console.log("error :",error)
-throw err
-    }
-})()
+//     }catch(error){
+// console.log("error :",error)
+// throw err
+//     }
+// })()
 
-*/
+// */
