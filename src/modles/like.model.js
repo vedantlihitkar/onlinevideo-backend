@@ -1,7 +1,6 @@
-
 import mongoose , {Schema}from "mongoose";
 
-const LikeSchema = mongoose.Schema({
+const LikeSchema =new mongoose.Schema({
     video:{
         type :Schema.Types.objectId,
         ref :"video"
@@ -27,4 +26,4 @@ const LikeSchema = mongoose.Schema({
     
 })
 
-export const likes = mongoose.model("like",LikeSchema)
+export const Like = mongoose.model("like",LikeSchema)

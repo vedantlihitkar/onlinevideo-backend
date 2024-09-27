@@ -1,7 +1,7 @@
-import mongoose ,{Schema, schema} from "mongoose";
+import mongoose ,{Schema} from "mongoose";
 import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
 
-const commentsSchema =mongoose.schema({
+const commentsSchema =new mongoose.Schema({
     content :{
         type : String,
         required : true,
@@ -21,4 +21,4 @@ const commentsSchema =mongoose.schema({
 
 commentsSchema.plugin(mongooseAggregatePaginate)
 
-export const Comment =mongoose.model("comment",commentsSchema)
+export const Comment = mongoose.model("comment",commentsSchema)
